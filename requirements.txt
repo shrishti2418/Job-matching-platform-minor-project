@@ -1,1 +1,24 @@
-"" 
+# Core Python utilities
+numpy
+pandas
+matplotlib
+
+# Machine Learning & NLP
+scikit-learn
+nltk
+spacy
+textblob
+
+# Resume Parsing & Text Extraction
+PyPDF2
+pdfplumber
+python-docx
+docx2txt
+
+# Web App
+streamlit
+
+# File Handling / Serialization
+joblib
+
+
