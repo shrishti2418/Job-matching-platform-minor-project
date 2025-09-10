@@ -7,8 +7,9 @@ from fastapi.templating import Jinja2Templates
 app = FastAPI()
 
 # Static & Templates config
-app.mount("/static", StaticFiles(directory="frontend/static"), name="static")
-templates = Jinja2Templates(directory="frontend/templates")
+app.mount("/static", StaticFiles(directory="static"), name="static")
+
+templates = Jinja2Templates(directory="templates")
 
 # Home page (resume upload)
 @app.get("/", response_class=HTMLResponse)
