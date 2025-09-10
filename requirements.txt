@@ -1,24 +1,35 @@
 # Core Python utilities
-numpy
-pandas
-matplotlib
+numpy==1.26.4
+pandas==2.2.2
+matplotlib==3.9.0
 
 # Machine Learning & NLP
-scikit-learn
-nltk
-spacy
-textblob
+scikit-learn==1.5.1
+nltk==3.8.1
+spacy==3.7.2
+textblob==0.18.0
 
 # Resume Parsing & Text Extraction
-PyPDF2
-pdfplumber
-python-docx
-docx2txt
-
-# Web App
-streamlit
+PyPDF2==3.0.1
+pdfplumber==0.11.4
+python-docx==1.1.2
+docx2txt==0.8
 
 # File Handling / Serialization
-joblib
+joblib==1.4.2
 
+# Web App (optional if you use Streamlit UI)
+streamlit==1.37.1
 
+# Backend (FastAPI stack)
+fastapi==0.110.0
+uvicorn==0.29.0
+jinja2==3.1.4
+
+# Database
+sqlalchemy==2.0.31
+psycopg2-binary==2.9.9
+
+# Extra (scraping & API calls)
+requests==2.32.3
+beautifulsoup4==4.12.3

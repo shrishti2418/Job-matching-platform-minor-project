@@ -1,1 +1,28 @@
- 
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-4">
+    <div class="card p-3 shadow">
+      <h4>Your Skills</h4>
+      <ul>
+        {% for skill in data.skills %}
+          <li>{{ skill }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+
+  <div class="col-md-8">
+    <h4>Matched Jobs</h4>
+    {% for job in data.jobs %}
+      <div class="card mb-3 p-3 shadow">
+        <h5>{{ job.title }}</h5>
+        <p>Match Score: {{ job.score }}</p>
+        <span class="badge bg-danger">Missing: {{ job.missing }}</span>
+        <a href="{{ job.course }}" target="_blank" class="btn btn-sm btn-outline-primary mt-2">Learn {{ job.missing }}</a>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
