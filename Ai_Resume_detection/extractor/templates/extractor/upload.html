@@ -1,0 +1,23 @@
+<!-- templates/upload.html -->
+<h2>Upload Resume</h2>
+<p><a href="{% url 'ats_checker' %}">Go to ATS Checker</a></p>
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Upload</button>
+</form>
+
+{% if message %}
+<p>{{ message }}</p>
+{% endif %}
+
+{% if skills %}
+<p><strong>Career Objective:</strong> {{ summary }}</p>
+<p><strong>Experience:</strong> {{ experience }}</p>
+<p><strong>Skills:</strong> {{ skills }}</p>
+<p><strong>Total Experience:</strong> {{ total_experience }}</p>
+<p><strong>Achievements:</strong> {{ achievements }}</p>
+<p><strong>Projects:</strong> {{ projects }}</p>
+<p><strong>Education:</strong> {{ education }}</p>
+<p><strong>GitHub Links:</strong> {{ github_links }}</p>
+{% endif %}

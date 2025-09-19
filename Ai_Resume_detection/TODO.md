@@ -1,0 +1,6 @@
+- [x] Update manage.py: Change DJANGO_SETTINGS_MODULE from 'Ai_Resume_detection.settings' to 'backend.settings'
+- [x] Update Ai_Resume_detection/asgi.py: Change DJANGO_SETTINGS_MODULE and docstring comment
+- [x] Update Ai_Resume_detection/wsgi.py: Change DJANGO_SETTINGS_MODULE and docstring comment
+- [x] Update Ai_Resume_detection/settings.py: Change ROOT_URLCONF, WSGI_APPLICATION, and docstring comment
+- [x] Update Ai_Resume_detection/urls.py: Change docstring comment
+- [x] Rename folder from Ai_Resume_detection to backend

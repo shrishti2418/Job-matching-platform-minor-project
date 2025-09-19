@@ -1,0 +1,75 @@
+<!-- templates/extractor/ats_checker.html -->
+<h2>ATS Checker</h2>
+<p>Upload your resume and paste a job description to check how well your resume matches the job requirements.</p>
+
+{% if error %}
+<div style="color: red; margin-bottom: 20px;">
+    <strong>Error:</strong> {{ error }}
+</div>
+{% endif %}
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div style="margin-bottom: 20px;">
+        <label for="job_description"><strong>Job Description:</strong></label><br>
+        <textarea name="job_description" id="job_description" rows="10" cols="80" placeholder="Paste the job description here..." required>{{ job_description|default:"" }}</textarea>
+    </div>
+
+    <div style="margin-bottom: 20px;">
+        <label for="resume_file"><strong>Upload Resume:</strong></label><br>
+        <input type="file" name="resume_file" id="resume_file" accept=".pdf,.docx" required>
+        <small>Supported formats: PDF, DOCX</small>
+    </div>
+
+    <button type="submit" style="padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">Check ATS Score</button>
+</form>
+
+{% if ats_result %}
+<hr style="margin: 30px 0;">
+<h3>ATS Analysis Results</h3>
+
+<div style="background-color: #f8f9fa; padding: 20px; border-radius: 5px; margin-bottom: 20px;">
+    <h4>ATS Score: <span style="color: {% if ats_result.match_percentage >= 70 %}green{% elif ats_result.match_percentage >= 50 %}orange{% else %}red{% endif %};">{{ ats_result.match_percentage }}%</span></h4>
+    <p><strong>Total Keywords in Job Description:</strong> {{ ats_result.total_jd_keywords }}</p>
+    <p><strong>Matched Keywords:</strong> {{ ats_result.match_count }}</p>
+</div>
+
+<div style="margin-bottom: 20px;">
+    <h4>Matched Keywords ({{ ats_result.matched_keywords|length }})</h4>
+    {% if ats_result.matched_keywords %}
+        <div style="background-color: #d4edda; padding: 10px; border-radius: 5px;">
+            {% for keyword in ats_result.matched_keywords %}
+                <span style="display: inline-block; background-color: #28a745; color: white; padding: 2px 6px; margin: 2px; border-radius: 3px; font-size: 12px;">{{ keyword }}</span>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No keywords matched.</p>
+    {% endif %}
+</div>
+
+<div style="margin-bottom: 20px;">
+    <h4>Missing Keywords ({{ missing_count }})</h4>
+    {% if missing_count > 0 %}
+        <div style="background-color: #f8d7da; padding: 10px; border-radius: 5px;">
+            {% for i in missing_indices %}
+                <span style="display: inline-block; background-color: #dc3545; color: white; padding: 2px 6px; margin: 2px; border-radius: 3px; font-size: 12px;">Missing Keyword {{ forloop.counter }}</span>
+            {% endfor %}
+            <p style="margin-top: 10px; color: #721c24;">Consider adding these keywords to improve your ATS score.</p>
+        </div>
+    {% else %}
+        <p>All keywords matched!</p>
+    {% endif %}
+</div>
+
+<div style="margin-bottom: 20px;">
+    <h4>Resume Preview</h4>
+    <div style="background-color: #f8f9fa; padding: 10px; border-radius: 5px; max-height: 200px; overflow-y: auto;">
+        <pre style="white-space: pre-wrap; font-family: monospace; font-size: 12px;">{{ resume_text }}</pre>
+    </div>
+</div>
+
+<div style="margin-top: 30px;">
+    <a href="{% url 'ats_checker' %}" style="padding: 10px 20px; background-color: #6c757d; color: white; text-decoration: none; border-radius: 5px;">Check Another Resume</a>
+</div>
+{% endif %}
