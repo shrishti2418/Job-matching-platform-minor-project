@@ -1,6 +1,5 @@
 import sys, os
 
-# go up twice: nlp → app → Minor-Project
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 sys.path.append(BASE_DIR)
 
@@ -29,7 +28,7 @@ def clean_resume_text(text):
     # 3. Replace multiple spaces/newlines with single space
     text = re.sub(r'\s+', ' ', text).strip()
 
-    # 4. Remove unnecessary punctuation except @, . , - , + (useful for emails & phones)
+    # 4. Remove unnecessary punctuation except @, . , - , + \
     text = re.sub(r'[^a-z0-9@\.\-\+\s]', ' ', text)
 
     # 5. Process with spaCy for lemmatization & stopword cleaning (optional at this stage)
