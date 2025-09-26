@@ -3,3 +3,5 @@ PyPDF2
 python-docx
 spacy
 djangorestframework==3.15.2
+streamlit
+plotly
